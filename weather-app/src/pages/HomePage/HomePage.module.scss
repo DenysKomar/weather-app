@@ -1,0 +1,18 @@
+@mixin background-images($background-name: rain) {
+  @if $background-name == rain {
+    background: url(rain.jpg);
+    color: white;
+  }
+}
+.container {
+  @include background-images(rain);
+  height: 100%;
+  width: 100%;
+  color: white;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 80% 20%;
+  grid-template-areas:
+    ". menu"
+    "info menu";
+}

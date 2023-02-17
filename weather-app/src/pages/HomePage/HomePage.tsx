@@ -1,7 +1,15 @@
+import WeatherInfo from "../../components/WeatherInfo/WeatherInfo";
+import style from "./HomePage.module.scss";
 const HomePage = (): JSX.Element => {
   return (
-    <main>
-      <h1 className="text-3xl font-bold underline">Hello</h1>
+    <main className={style.container}>
+      <WeatherInfo
+        degrees={5}
+        city={"London"}
+        date={"23"}
+        day={"Sunday"}
+        status={"Rainy"}
+      ></WeatherInfo>
     </main>
   );
 };
