@@ -1,9 +1,10 @@
 import HomePage from "./pages/HomePage/HomePage";
+import React from "react";
 
 function App(): JSX.Element {
   return (
     <div className="App">
-      <HomePage></HomePage>
+      <HomePage />
     </div>
   );
 }

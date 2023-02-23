@@ -1,6 +1,6 @@
 @mixin background-images($background-name: rain) {
   @if $background-name == rain {
-    background: url(rain.jpg);
+    background: url(rain.jpg) no-repeat center center fixed;
     color: white;
   }
 }
@@ -11,7 +11,7 @@
   color: white;
   display: grid;
   grid-template-columns: 70% 30%;
-  grid-template-rows: 80% 20%;
+  grid-template-rows: auto 30%;
   grid-template-areas:
     ". menu"
     "info menu";

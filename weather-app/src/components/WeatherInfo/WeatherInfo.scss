@@ -1,0 +1,35 @@
+.weatherContainer {
+  grid-area: info;
+  display: inline;
+  padding-left: 10%;
+  &h1 {
+    display: inherit;
+  }
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-areas: "degrees city weather";
+}
+.degrees {
+  font-size: 7rem;
+  grid-area: degrees;
+  text-align: end;
+  padding-right: 3%;
+}
+.weather {
+  grid-area: weather;
+  & p {
+    padding-left: 30px;
+  }
+}
+.city {
+  grid-area: city;
+
+  font-size: 3rem;
+  padding-top: 20px;
+  max-width: 100px;
+  min-width: 50px;
+}
+.date {
+  grid-area: date;
+  font-size: 1rem;
+}
