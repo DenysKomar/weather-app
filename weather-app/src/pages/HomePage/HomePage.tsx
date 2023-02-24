@@ -4,10 +4,12 @@ import "./HomePage.scss";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/state";
+import useApi from "../../hooks/useApi";
 const HomePage = (): JSX.Element => {
   const { degrees, date, day, city, status } = useSelector(
     (state: RootState) => state.weatherData || {}
   );
+  useApi(city);
   return (
     <main className="container">
       <WeatherInfo
