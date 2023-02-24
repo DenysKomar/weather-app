@@ -1,11 +1,12 @@
+import React from "react";
 import WeatherInfo from "../../components/WeatherInfo/WeatherInfo";
 import "./HomePage.scss";
-import React from "react";
-import { useSelector } from "react-redux/es/exports";
+
+import { useSelector } from "react-redux";
 import { RootState } from "../../state/state";
 const HomePage = (): JSX.Element => {
   const { degrees, date, day, city, status } = useSelector(
-    (state: RootState) => state.weatherData
+    (state: RootState) => state.weatherData || {}
   );
   return (
     <main className="container">
@@ -15,7 +16,7 @@ const HomePage = (): JSX.Element => {
         date={date}
         day={day}
         status={status}
-      ></WeatherInfo>
+      />
     </main>
   );
 };
