@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import HomePage from "./HomePage";
 import React from "react";
 import { Provider } from "react-redux";
-import { RootState, store } from "../../state/state";
 import configureStore from "redux-mock-store";
 
 const mockStore = configureStore();
@@ -13,8 +12,13 @@ describe("Home Page", () => {
     store = mockStore({
       degrees: 5,
       city: "London",
-      date: "23",
-      day: "Sunday",
+      date: {
+        time: `06:53`,
+        daystr: "Sunday",
+        daynum: 6,
+        month: "october",
+        year: "2022",
+      },
       status: "Rainy",
     });
   });
