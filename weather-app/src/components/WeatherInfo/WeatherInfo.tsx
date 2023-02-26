@@ -1,6 +1,5 @@
 import IWeatherInfo from "./WeatherInfo.props";
 import "./WeatherInfo.scss";
-import { useState } from "react";
 import React from "react";
 
 const WeatherInfo = ({ degrees, city, date, status }: IWeatherInfo) => {
@@ -22,6 +21,7 @@ const WeatherInfo = ({ degrees, city, date, status }: IWeatherInfo) => {
         <img
           src={`../src/assets/${status ? status : "clouds"}.svg`}
           alt="rain"
+          role="status"
         />
         <p>{status}</p>
       </span>
