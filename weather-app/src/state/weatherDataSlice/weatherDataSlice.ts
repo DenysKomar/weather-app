@@ -33,7 +33,7 @@ const initialState: IWeatherData = {
       month: "october",
       year: "2022",
     },
-    status: "Rainy",
+    status: "rainy",
   },
   isLoading: false,
   isError: "",
@@ -71,19 +71,34 @@ export const weatherDataSlice = createSlice({
           "Friday",
           "Saturday",
         ];
+        const monthNames = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
 
-        const today = new Date();
-        const weekday = today.getUTCDay();
+        const date = new Date();
 
         state.isLoading = false;
         state.weatherData.degrees = Math.round(action.payload.main.temp_max);
         state.weatherData.city = action.payload.name;
-        state.weatherData.date.daynum = weekday;
-        state.weatherData.date.daystr = days[weekday];
-        state.weatherData.date.time = `${today
+        state.weatherData.date.month = monthNames[date.getMonth()];
+        state.weatherData.date.daynum = date.getUTCDay();
+        state.weatherData.date.daystr = days[date.getUTCDay()];
+        state.weatherData.date.year = date.getUTCFullYear().toString();
+        state.weatherData.date.time = `${date
           .getHours()
           .toString()
-          .padStart(2, "0")}:${today.getMinutes().toString().padStart(2, "0")}`;
+          .padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
         state.weatherData.status = action.payload.weather[0].main;
       }
     );

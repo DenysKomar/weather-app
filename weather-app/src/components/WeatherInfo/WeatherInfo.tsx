@@ -12,16 +12,17 @@ const WeatherInfo = ({ degrees, city, date, status }: IWeatherInfo) => {
       </span>
       <span className="city" role="info">
         <p>{city}</p>
-        <p className="date">
-          {time}
-          {daystr}
-          {daynum}
-          {month}
-          {year}
+        <p className="date" role="date">
+          {time} {` - `} {daystr}, {daynum} {month ? month.substring(0, 3) : ""}{" "}
+          {` '`}
+          {year ? year.substring(2, 4) : ""}
         </p>
       </span>
       <span className="weather" role="info">
-        <img src="../src/assets/rain.svg" alt="rain" />
+        <img
+          src={`../src/assets/${status ? status : "clouds"}.svg`}
+          alt="rain"
+        />
         <p>{status}</p>
       </span>
     </div>
