@@ -7,7 +7,7 @@ const WeatherInfo = ({ degrees, city, date, status }: IWeatherInfo) => {
   return (
     <div className="weatherContainer" role="weather-container">
       <span className="degrees" role="info">
-        {degrees < 10 ? `0${degrees}` : `${degrees}`}°
+        {degrees < 10 && degrees > 0 ? `0${degrees}` : `${degrees}`}°
       </span>
       <span className="city" role="info">
         <p>{city}</p>

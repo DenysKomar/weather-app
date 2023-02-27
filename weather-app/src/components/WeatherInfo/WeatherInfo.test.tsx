@@ -2,6 +2,8 @@ import { render, screen, waitFor } from "@testing-library/react";
 import WeatherInfo from "./WeatherInfo";
 import React from "react";
 import IWeatherInfo from "./WeatherInfo.props";
+import { configureStore } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
 
 describe("Home Page", () => {
   const weatherData: IWeatherInfo = {

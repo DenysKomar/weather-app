@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../state";
 import { IWeather } from "../../interfaces/weatherInterface";
 import axios from "axios";
 import config from "../../config";
@@ -18,6 +17,12 @@ export interface IWeatherData {
     };
 
     status: string;
+    weatherDetails: {
+      cloudy: number;
+      rain: number;
+      humidity: number;
+      wind: number;
+    };
   };
   isLoading: boolean;
   isError: string;
@@ -35,6 +40,12 @@ const initialState: IWeatherData = {
       year: "2022",
     },
     status: "rainy",
+    weatherDetails: {
+      cloudy: 86,
+      humidity: 62,
+      wind: 8,
+      rain: 0,
+    },
   },
   isLoading: false,
   isError: "",
@@ -86,6 +97,7 @@ export const weatherDataSlice = createSlice({
           "November",
           "December",
         ];
+        console.log(action.payload);
 
         const date = new Date();
 
@@ -101,6 +113,14 @@ export const weatherDataSlice = createSlice({
           .toString()
           .padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
         state.weatherData.status = action.payload.weather[0].main;
+
+        state.weatherData.weatherDetails.cloudy = action.payload.clouds.all;
+        state.weatherData.weatherDetails.humidity =
+          action.payload.main.humidity;
+        state.weatherData.weatherDetails.wind = action.payload.wind.speed;
+        if (action.payload.rain) {
+          state.weatherData.weatherDetails.rain = action.payload.rain["1h"];
+        }
       }
     );
     builder.addCase(fetchWeather.rejected, (state: IWeatherData) => {

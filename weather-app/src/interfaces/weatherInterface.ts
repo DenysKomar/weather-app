@@ -36,8 +36,12 @@ export interface Sys {
   sunrise: number;
   sunset: number;
 }
+export interface Rain {
+  "1h": number;
+}
 
 export interface IWeather {
+  rain?: Rain;
   coord: Coord;
   weather: Weather[];
   base: string;
