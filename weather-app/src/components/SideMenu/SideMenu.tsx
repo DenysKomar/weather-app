@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../state/state";
 import { fetchWeather } from "../../state/weatherDataSlice/weatherDataSlice";
@@ -22,9 +22,15 @@ const SideMenu: React.FC<SideWindowProps> = ({ cities, weatherDetails }) => {
           type="text"
           id="search"
           value={searchTerm}
+          placeholder="Another location"
           onChange={(event) => setSearchTerm(event.target.value)}
         />
-        <button onClick={() => dispatch(fetchWeather(searchTerm))}>
+        <button
+          onClick={() => {
+            searchTerm && dispatch(fetchWeather(searchTerm));
+            setSearchTerm(searchTerm);
+          }}
+        >
           <img src={`../src/assets/search-icon.svg`} alt="search icon" />
         </button>
       </div>

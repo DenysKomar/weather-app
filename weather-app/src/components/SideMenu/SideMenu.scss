@@ -1,5 +1,7 @@
 @import "../src/index.scss";
 .side-window {
+  font-size: 20px;
+  font-weight: 300;
   position: fixed;
   top: 0;
   right: 0;
@@ -51,6 +53,9 @@
   }
   .cities {
     grid-area: cities;
+    a {
+      margin-top: 35px;
+    }
   }
   .weatherDetails {
     grid-area: weatherDetails;
@@ -78,6 +83,8 @@
     border-bottom: 1px solid $basebg-color;
     margin-bottom: 40px;
     background: none;
+    color: $basebg-color;
+    font-size: 16 px;
   }
 
   h2 {

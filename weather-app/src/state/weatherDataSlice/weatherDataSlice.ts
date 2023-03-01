@@ -26,6 +26,7 @@ export interface IWeatherData {
   };
   isLoading: boolean;
   isError: string;
+  backgroundImage: string;
 }
 
 const initialState: IWeatherData = {
@@ -39,7 +40,7 @@ const initialState: IWeatherData = {
       month: "october",
       year: "2022",
     },
-    status: "rainy",
+    status: "rain",
     weatherDetails: {
       cloudy: 86,
       humidity: 62,
@@ -49,6 +50,7 @@ const initialState: IWeatherData = {
   },
   isLoading: false,
   isError: "",
+  backgroundImage: "../src/assets/cloudsbg.jpg",
 };
 export const fetchWeather = createAsyncThunk(
   "weather/fetchWeather",
@@ -102,11 +104,13 @@ export const weatherDataSlice = createSlice({
         const date = new Date();
 
         state.isLoading = false;
+        state.backgroundImage = `../src/assets/${action.payload.weather[0].main.toLowerCase()}bg.jpg`;
+        console.log(state.backgroundImage);
         state.weatherData.degrees = Math.round(action.payload.main.temp_max);
         state.weatherData.city = action.payload.name;
         state.weatherData.date.month = monthNames[date.getMonth()];
-        state.weatherData.date.daynum = date.getUTCDay();
-        state.weatherData.date.daystr = days[date.getUTCDay()];
+        state.weatherData.date.daynum = date.getDate();
+        state.weatherData.date.daystr = days[date.getDay()];
         state.weatherData.date.year = date.getUTCFullYear().toString();
         state.weatherData.date.time = `${date
           .getHours()

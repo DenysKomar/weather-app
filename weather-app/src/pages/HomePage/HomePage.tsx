@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import WeatherInfo from "../../components/WeatherInfo/WeatherInfo";
 import "./HomePage.scss";
 
@@ -24,7 +24,7 @@ const HomePage = (): JSX.Element => {
     },
   ];
   const dispatch = useDispatch<AppDispatch>();
-  const { weatherData, isLoading, isError } = useSelector(
+  const { weatherData, isLoading, isError, backgroundImage } = useSelector(
     (state: RootState) => state.weatherData || {}
   );
   const { date, degrees, city, status, weatherDetails } = weatherData || {};
@@ -37,7 +37,10 @@ const HomePage = (): JSX.Element => {
   }, []);
 
   return (
-    <main className="container">
+    <main
+      className={`container`}
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
       {!isLoading ? (
         <WeatherInfo
           degrees={degrees}
