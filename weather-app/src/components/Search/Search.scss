@@ -1,0 +1,44 @@
+@import "../src/index.scss";
+.search-form {
+  grid-area: search;
+  grid-template-columns: 80% 20%;
+  grid-template-rows: 1fr;
+  grid-template-areas: "input button";
+  display: grid;
+
+  .searchInput {
+    grid-area: input;
+    padding-top: 20px;
+    color: $text-white-color;
+    input {
+      color: $text-white-color;
+      position: relative;
+      top: 23%;
+      padding: 10px 0;
+      padding-right: 100px;
+    }
+    ::placeholder {
+      color: $text-white-color;
+    }
+  }
+
+  button {
+    grid-area: button;
+    max-width: 80px;
+    max-height: 80px;
+    background: rgb(92, 125, 118, 0.7);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
