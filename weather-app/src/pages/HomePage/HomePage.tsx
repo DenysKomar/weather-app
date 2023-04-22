@@ -42,12 +42,14 @@ const HomePage = (): JSX.Element => {
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       {!isLoading ? (
-        <WeatherInfo
-          degrees={degrees}
-          city={city}
-          date={date}
-          status={status}
-        />
+        <div className="info">
+          <WeatherInfo
+            degrees={degrees}
+            city={city}
+            date={date}
+            status={status}
+          />
+        </div>
       ) : (
         <></>
       )}

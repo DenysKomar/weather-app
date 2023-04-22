@@ -1,18 +1,6 @@
-@mixin background-images($background-name: rain) {
-  @if $background-name == rainy {
-    background: url(rainy.jpg);
-    color: white;
-  }
-  @if $background-name == clouds {
-    background: url(clouds.jpg);
-    color: white;
-  }
-  @if $background-name == clearbg {
-    background: url(clearbg.jpg);
-    color: white;
-  }
-}
 .container {
+  overflow: hidden;
+
   height: 100%;
   width: 100%;
   color: white;
@@ -22,16 +10,30 @@
   grid-template-areas:
     ". menu"
     "info menu";
-  .rainybg {
-    @include background-images(rainy);
-  }
-  .cloudsbg {
-    background: url(clouds.jpg);
-  }
-  .clearsbg {
-    background: url(clearbg.jpg);
-  }
 }
 .menu {
   grid-area: menu;
+}
+.info {
+  grid-area: info;
+}
+@media screen and (max-width: 768px) {
+  .container {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    grid-template-columns: 100%;
+    grid-template-rows: 100vh auto;
+    grid-template-areas:
+      "info"
+      "menu";
+    padding: none;
+  }
+  .city {
+    max-width: none;
+  }
+  .menu {
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
 }

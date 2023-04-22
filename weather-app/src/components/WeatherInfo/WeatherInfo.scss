@@ -33,3 +33,30 @@
   grid-area: date;
   font-size: 1rem;
 }
+@media screen and (max-width: 768px) {
+  .weatherContainer {
+    padding-left: 0;
+    height: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto 1fr;
+    grid-template-areas:
+      "degrees"
+      "weather"
+      "city";
+    text-align: center;
+    justify-content: center;
+    .degrees {
+      padding: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .city {
+      text-align: center;
+    }
+    .weather {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+}
