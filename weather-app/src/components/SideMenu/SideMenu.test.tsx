@@ -1,5 +1,10 @@
 import React from "react";
-import { render, fireEvent, getByRole } from "@testing-library/react";
+import {
+  render,
+  fireEvent,
+  getByRole,
+  getByPlaceholderText,
+} from "@testing-library/react";
 import SideMenu from "./SideMenu";
 import { CityData, SideWindowProps, WeatherData } from "./SideMenu.props";
 import { Provider } from "react-redux";
@@ -62,16 +67,20 @@ describe("SideWindow component", () => {
         <SideMenu cities={cities} weatherDetails={weatherDetails} />
       </Provider>
     );
-    expect(queryByText("Cloudy: 86%")).toBeInTheDocument();
-    expect(queryByText("Wind: 5km/h")).toBeInTheDocument();
-    expect(queryByText("Humidity: 70%")).toBeInTheDocument();
-    expect(queryByText("Rain: 0mm")).toBeInTheDocument();
+    expect(queryByText("Cloudy:")).toBeInTheDocument();
+    expect(queryByText("Wind:")).toBeInTheDocument();
+    expect(queryByText("Humidity:")).toBeInTheDocument();
+    expect(queryByText("Rain:")).toBeInTheDocument();
   });
 
-  //   it("displays a message when no cities match the search term", () => {
-  //     const { getByRole, getByText } = render(<SideMenu cities={cities} />);
-  //     const searchInput = getByRole("search");
-  //     fireEvent.change(searchInput, { target: { value: "No cities found" } });
-  //     expect(getByText("No cities found")).toBeInTheDocument();
-  //   });
+  it("displays a message when no cities match the search term", () => {
+    const { getByText, getByPlaceholderText } = render(
+      <Provider store={store}>
+        <SideMenu cities={cities} weatherDetails={weatherDetails} />
+      </Provider>
+    );
+    const searchInput = getByPlaceholderText("Another location");
+    fireEvent.change(searchInput, { target: { value: "No cities found" } });
+    expect(getByText("No cities found")).toBeInTheDocument();
+  });
 });

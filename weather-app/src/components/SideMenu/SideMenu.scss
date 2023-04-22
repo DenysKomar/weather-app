@@ -1,52 +1,20 @@
 @import "../src/index.scss";
 .side-window {
-  font-size: 20px;
-  font-weight: 300;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 400px;
+  font-weight: 300;
+  min-width: 400px;
   padding: 0 0 20px 40px;
   backdrop-filter: blur(10px);
-  z-index: 100;
-  color: $basebg-color;
+  color: $text-white-color;
   background: rgba(0, 0, 0, 0.4);
   display: grid;
   grid-template-areas: "search" "cities" "hr" "weatherDetails";
   grid-template-columns: 1fr;
   grid-template-rows: 20% 40% auto 40%;
-  .search {
-    grid-area: search;
-    grid-template-columns: 60% auto 20%;
-    grid-template-rows: 1fr;
-    grid-template-areas: "input . button";
-    display: grid;
 
-    .searchInput {
-      grid-area: input;
-    }
-
-    button {
-      grid-area: button;
-      max-width: 80px;
-      max-height: 80px;
-      background: rgb(92, 125, 118, 0.7);
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      img {
-        width: 20px;
-        height: 20px;
-      }
-    }
-  }
   .value {
     text-align: right;
     margin-right: 10px;
@@ -100,5 +68,12 @@
       margin: 5px 0;
       padding: 10px 0;
     }
+  }
+}
+@media screen and (max-width: 768px) {
+  .side-window {
+    position: relative;
+    min-width: 0;
+    padding: 0 5px;
   }
 }

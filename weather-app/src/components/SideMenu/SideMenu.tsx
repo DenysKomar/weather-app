@@ -2,38 +2,25 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../state/state";
 import { fetchWeather } from "../../state/weatherDataSlice/weatherDataSlice";
+import Search from "../Search/Search";
 import { SideWindowProps } from "./SideMenu.props";
 import "./SideMenu.scss";
 
 const SideMenu: React.FC<SideWindowProps> = ({ cities, weatherDetails }) => {
-  const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch<AppDispatch>();
+  const [query, setQuery] = useState<string>("");
 
   const filteredCities = cities.filter((city) =>
-    city.name.toLowerCase().includes(searchTerm.toLowerCase())
+    city.name.toLowerCase().includes(query.toLowerCase())
   );
   const { cloudy, humidity, rain, wind } = weatherDetails || {};
+  const queryRequest = (query: string) => {
+    setQuery(query);
+  };
 
   return (
     <div className="side-window">
-      <div className="search" role="search">
-        <input
-          className="searchInput"
-          type="text"
-          id="search"
-          value={searchTerm}
-          placeholder="Another location"
-          onChange={(event) => setSearchTerm(event.target.value)}
-        />
-        <button
-          onClick={() => {
-            searchTerm && dispatch(fetchWeather(searchTerm));
-            setSearchTerm(searchTerm);
-          }}
-        >
-          <img src={`../src/assets/search-icon.svg`} alt="search icon" />
-        </button>
-      </div>
+      <Search query={query} setQuery={setQuery} queryRequest={queryRequest} />
 
       <div className="cities">
         {filteredCities.length === 0 ? (
